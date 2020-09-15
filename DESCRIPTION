@@ -1,0 +1,28 @@
+Package: TensorClustering
+Title: Implement tensor envelope EM algorithm for paper "Tensor Envelope Mixture Model For Simultaneous Clustering and Multiway
+       Dimension Reduction"
+Version: 0.0.0.9000
+Authors@R: 
+    c(person(given = "Kai",
+           family = "Deng",
+           role = c("aut", "cre"),
+           email = "kd18h@stat.fsu.edu"),
+      person(given = "Xin",
+           family = "Zhang",
+           role = "aut"))
+Description: This package provide the code for solving TEMM.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports: 
+    mvtnorm,
+    TRES,
+    rTensor,
+    tensr,
+    MASS,
+    abind,
+    combinat,
+    pracma,
+    stats
