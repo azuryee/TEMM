@@ -108,10 +108,7 @@ TGMM = function(Xn, K, shape="shared", initial=NULL, iter.max=500, stop=1e-3, tr
 
           SIGhalf = rTensor::ttl(rTensor::as.tensor(X_Mu), SIGinvhalf_m, ms=dim_m)
           SIG_new[[m]] = TRES::ttt(SIGhalf, SIGhalf, c(dim_m,M+1))@data / (n*p/dimen[m])
-<<<<<<< HEAD
           
-=======
->>>>>>> fb6544a5188e11bf0f7d8f79d3b69ff327ceea63
           SIGinvhalf[[m]] = pracma::sqrtm(SIG_new[[m]])$Binv
           #SIG_err[m] = tensr::fnorm(SIG_new[[m]]-SIG_old[[m]])/tensr::fnorm(SIG_old[[m]])
         }
@@ -177,7 +174,6 @@ TGMM = function(Xn, K, shape="shared", initial=NULL, iter.max=500, stop=1e-3, tr
 
   if(shape=="distinct"){
     ## initialize cluster mean, covariance, B and pi for EM ##
-<<<<<<< HEAD
     SIG.est = array(list(),K)
     SIGinv.est = array(list(),K)
     for (k in 1:K) {
@@ -185,8 +181,6 @@ TGMM = function(Xn, K, shape="shared", initial=NULL, iter.max=500, stop=1e-3, tr
       SIGinv.est[[k]] = array(list(),M)
     }
     
-=======
->>>>>>> fb6544a5188e11bf0f7d8f79d3b69ff327ceea63
     pi.est = rep(0,K)
     mu.est_old = matrix(0,p,K)
     Xm_mu = matrix(0,p,n)
@@ -196,7 +190,6 @@ TGMM = function(Xn, K, shape="shared", initial=NULL, iter.max=500, stop=1e-3, tr
       pi.est[k] = sum(id_init==k)/n
       mu.est_old[,k] = rowMeans(Xm[,isk])
       Xm_mu[,isk] = Xm[,isk] - mu.est_old[,k]  #every data substract it's cluster mean
-<<<<<<< HEAD
       
       X_subclus = array(Xm_mu[,isk],c(dimen,length(isk)))
       SIG_temp = TRES::kroncov(rTensor::as.tensor(X_subclus))
@@ -209,29 +202,6 @@ TGMM = function(Xn, K, shape="shared", initial=NULL, iter.max=500, stop=1e-3, tr
     Mu.est_old = asplit(Mu_temp,M+1)  #a list of length K, each element is a tensor cluster mean
 
     
-=======
-    }
-    Mu_temp = array(mu.est_old,c(dimen,K))
-    Mu.est_old = asplit(Mu_temp,M+1)  #a list of length K, each element is a tensor cluster mean
-
-    X_subclus = array(Xm_mu,c(dimen,n))
-
-    SIG_temp = TRES::kroncov(rTensor::as.tensor(X_subclus))
-    SIG.est = SIG_temp$S
-    SIG.est[[1]] = SIG.est[[1]]*SIG_temp$lambda
-    SIGinv.est = lapply(SIG.est,MASS::ginv)
-    SIGinvhalf = list()
-    for (m in 1:M) {
-      SIGinvhalf[[m]] = pracma::sqrtm(SIG.est[[m]])$Binv
-    }
-
-    for(k in 2:K){
-      Mu_dif = Mu.est_old[[k]]-Mu.est_old[[1]]
-      B_old[[k-1]] = rTensor::ttl(rTensor::as.tensor(Mu_dif), SIGinv.est, ms=c(1:M))@data
-    }
-
-
->>>>>>> fb6544a5188e11bf0f7d8f79d3b69ff327ceea63
     ## Env-EM ##
     eta.est = matrix(0,n,K)
     rp = matrix(1,n,K)  #the ratio of prabability Xi belong to k and 1
@@ -241,7 +211,6 @@ TGMM = function(Xn, K, shape="shared", initial=NULL, iter.max=500, stop=1e-3, tr
 
       ## E-step: calculate B_k and eta.est ##
       for(i in 1:n){
-<<<<<<< HEAD
         dist_mu = rTensor::as.tensor(X[[i]]-Mu.est_old[[1]])
         X_temp = rTensor::ttl(dist_mu, SIGinv.est[[1]], ms=c(1:M))
         neglogf1 = p*sum(log(sapply(SIG.est[[1]],det))/dimen)/2 + rTensor::innerProd(dist_mu,X_temp)/2
@@ -254,13 +223,6 @@ TGMM = function(Xn, K, shape="shared", initial=NULL, iter.max=500, stop=1e-3, tr
           X_temp = rTensor::ttl(dist_mu, SIGinv.est[[k]], ms=c(1:M))
           neglogfk = p*sum(log(sapply(SIG.est[[k]],det))/dimen)/2 + rTensor::innerProd(dist_mu,X_temp)/2
           logrp = neglogf1 - neglogfk
-=======
-        for(k in 2:K){
-          X_temp = X[[i]] - (Mu.est_old[[k]]+Mu.est_old[[1]])/2
-          logrp = log(pi.est[k]/pi.est[1]) +
-            rTensor::innerProd(rTensor::as.tensor(B_old[[k-1]]),
-                               rTensor::as.tensor(X_temp))
->>>>>>> fb6544a5188e11bf0f7d8f79d3b69ff327ceea63
           rp[i,k] = exp(logrp)
         }
         eta.est[i,1] = 1/sum(rp[i,])
@@ -279,14 +241,10 @@ TGMM = function(Xn, K, shape="shared", initial=NULL, iter.max=500, stop=1e-3, tr
       Mutil = asplit(Mutil_temp,M+1)  # \tilde{\mu} in notes, a list of length K
 
       SIG_old = SIG.est
-<<<<<<< HEAD
       SIG_new = array(list(),K)
       for (k in 1:K) {
         SIG_new[[k]] = array(list(),M)
       }
-=======
-      SIG_new = list()
->>>>>>> fb6544a5188e11bf0f7d8f79d3b69ff327ceea63
       cov.max = 1
       for(cov.iter in 1:cov.max){
         #SIG_err = rep(0,M)
@@ -295,7 +253,6 @@ TGMM = function(Xn, K, shape="shared", initial=NULL, iter.max=500, stop=1e-3, tr
           mutil_p = tensr::collapse_mode(Mutil_temp,m=1:M)
           Xm_mu = matrix(0,p,n*K)
           for(k in 1:K){
-<<<<<<< HEAD
             Xm_mu = t(t(Xm-mutil_p[,k])*sqrt(eta.est[,k]))
             
             X_Mu = rTensor::as.tensor(array(Xm_mu,c(dimen,n)))
@@ -319,49 +276,11 @@ TGMM = function(Xn, K, shape="shared", initial=NULL, iter.max=500, stop=1e-3, tr
       Mu.est_new = list()
       for(k in 1:K) {
         Mu.est_new[[k]] = Mutil[[k]]
-=======
-            Xm_mu[,((k-1)*n+1):(k*n)] = t(t(Xm-mutil_p[,k])*sqrt(eta.est[,k]))
-          }
-          X_Mu = array(Xm_mu,c(dimen,n*K))
-
-          SIGinvhalf_m = SIGinvhalf
-          SIGinvhalf_m[[m]] = NULL
-
-          SIGhalf = rTensor::ttl(rTensor::as.tensor(X_Mu), SIGinvhalf_m, ms=dim_m)
-          SIG_new[[m]] = TRES::ttt(SIGhalf, SIGhalf, c(dim_m,M+1))@data / (n*p/dimen[m])
-          SIGinvhalf[[m]] = pracma::sqrtm(SIG_new[[m]])$Binv
-          #SIG_err[m] = tensr::fnorm(SIG_new[[m]]-SIG_old[[m]])/tensr::fnorm(SIG_old[[m]])
-        }
-        #SIG_err = norm(as.matrix(SIG_err),type="F")
-        #print(SIG_err)
-        # if(SIG_err<1e-6){
-        #   break
-        # }
-        # else{
-        #   SIG_old = SIG_new
-        # }
-      }
-
-      SIG.est = SIG_new
-      SIGinv.est = lapply(SIG.est,MASS::ginv)
-
-      Mu.est_new = B_new = list()
-      for(k in 1:K) {
-        Mu.est_new[[k]] = Mutil[[k]]
-        if(k>1){
-          Mu_dif = Mu.est_new[[k]] - Mu.est_new[[1]]
-          B_new[[k-1]] = rTensor::ttl(rTensor::as.tensor(Mu_dif), SIGinv.est, ms=c(1:M))@data
-        }
->>>>>>> fb6544a5188e11bf0f7d8f79d3b69ff327ceea63
       }
 
 
       Mu_err = tensr::fnorm(abind::abind(Mu.est_new)-abind::abind(Mu.est_old))/
         tensr::fnorm(abind::abind(Mu.est_old))
-<<<<<<< HEAD
-=======
-      #B_err = tensr::fnorm(abind(B_new)-abind(B_old))/tensr::fnorm(abind(B_old))
->>>>>>> fb6544a5188e11bf0f7d8f79d3b69ff327ceea63
       id_env = apply(eta.est, 1, which.max)
 
 
@@ -379,10 +298,6 @@ TGMM = function(Xn, K, shape="shared", initial=NULL, iter.max=500, stop=1e-3, tr
         break
       } else {
         Mu.est_old = Mu.est_new
-<<<<<<< HEAD
-=======
-        B_old = B_new
->>>>>>> fb6544a5188e11bf0f7d8f79d3b69ff327ceea63
       }
     }
 
