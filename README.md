@@ -8,7 +8,7 @@ TEMM
 <!-- badges: end -->
 
 This is an R package to implement the Tensor Envelope Mixture Model
-(TEMM) for the paper “Tensor Envelope Mixture Model For Simultaneous
+(TEMM) for paper “Tensor Envelope Mixture Model For Simultaneous
 Clustering and Multiway Dimension Reduction” by Deng and Zhang.
 
 Installation
