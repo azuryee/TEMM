@@ -1,8 +1,8 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-TensorClustering
-================
+TEMM
+====
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -14,12 +14,12 @@ Clustering and Multiway Dimension Reduction” by Deng and Zhang.
 Installation
 ------------
 
-The [TensorClustering](#tensorclustering) package can be installed,
-directly from [GitHub](https://github.com/), using the devtools library:
+The [TEMM](#temm) package can be installed, directly from
+[GitHub](https://github.com/), using the devtools library:
 
 ``` r
 install.packages("devtools")
 library(devtools)
-devtools::install_github("azuryee/TensorClustering")
-library(TensorClustering)
+devtools::install_github("azuryee/TEMM")
+library(TEMM)
 ```
