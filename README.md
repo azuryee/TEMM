@@ -15,7 +15,7 @@ Installation
 ------------
 
 The [TEMM](#temm) package can be installed, directly from
-[GitHub](https://github.com/), using the devtools library:
+[GitHub](https://github.com/), using the “devtools” library:
 
 ``` r
 install.packages("devtools")
