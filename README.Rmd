@@ -23,7 +23,7 @@ This is an R package to implement the Tensor Envelope Mixture Model (TEMM) for t
 
 ## Installation
 
-The [TEMM] package can be installed, directly from [GitHub](https://github.com/), using the "devtools" library:
+The [TEMM] package can be installed, directly from [GitHub](https://github.com/), using the “devtools” library:
 
 ``` r
 install.packages("devtools")
