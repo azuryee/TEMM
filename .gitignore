@@ -3,6 +3,6 @@
 .RData
 .Ruserdata
 TensorClustering.Rproj
-.README.Rmd
+README.Rmd
 .Rbuildignore
 .gitignore
