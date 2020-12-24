@@ -8,11 +8,8 @@ TensorClustering
 <!-- badges: end -->
 
 This is an R package to implement the Tensor Envelope Mixture Model
-(TEMM) and Doubly-Enhanced EM (DEEM) for tensor clustering. TEEM is from
-the paper “Tensor Envelope Mixture Model For Simultaneous Clustering and
-Multiway Dimension Reduction” by Deng and Zhang. DEEM is from paper “A
-Doubly-Enhanced EM Algorithm for Model-Based Tensor Clustering” by Mai,
-Zhang, Pan and Deng.
+(TEMM) for the paper “Tensor Envelope Mixture Model For Simultaneous
+Clustering and Multiway Dimension Reduction” by Deng and Zhang.
 
 Installation
 ------------
