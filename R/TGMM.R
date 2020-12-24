@@ -1,4 +1,4 @@
-TGMM = function(Xn, K, shape="shared", initial=NULL, iter.max=500, stop=1e-3, trueY=NULL){
+TGMM = function(Xn, K, shape="shared", initial=NULL, iter.max=500, stop=1e-3, trueY=NULL, print=FALSE){
   #Xn, array type, the tensor data to clust, dimension of last mode is sample size
   #K is number of clusters
   #trueY is the true label
@@ -142,12 +142,14 @@ TGMM = function(Xn, K, shape="shared", initial=NULL, iter.max=500, stop=1e-3, tr
 
 
       t_iter = difftime(Sys.time(), t0, units="secs")
-
-      if(is.null(trueY)){
-        cat(paste0("iter",iter),Mu_err,"\n",sep=" ")
-      } else {
-        id_err = cluster_err(K,trueY,id_env)$cluster_err
-        cat(paste0("iter",iter),Mu_err,id_err,"\n",sep=" ")
+      
+      if(print){
+        if(is.null(trueY)){
+          cat(paste0("iter",iter),Mu_err,"\n",sep=" ")
+        } else {
+          id_err = cluster_err(K,trueY,id_env)$cluster_err
+          cat(paste0("iter",iter),Mu_err,id_err,"\n",sep=" ")
+        }
       }
 
 
@@ -285,12 +287,14 @@ TGMM = function(Xn, K, shape="shared", initial=NULL, iter.max=500, stop=1e-3, tr
 
 
       t_iter = difftime(Sys.time(), t0, units="secs")
-
-      if(is.null(trueY)){
-        cat(paste0("iter",iter),Mu_err,"\n",sep=" ")
-      } else {
-        id_err = cluster_err(K,trueY,id_env)$cluster_err
-        cat(paste0("iter",iter),Mu_err,id_err,"\n",sep=" ")
+      
+      if(print){
+        if(is.null(trueY)){
+          cat(paste0("iter",iter),Mu_err,"\n",sep=" ")
+        } else {
+          id_err = cluster_err(K,trueY,id_env)$cluster_err
+          cat(paste0("iter",iter),Mu_err,id_err,"\n",sep=" ")
+        }
       }
 
 
