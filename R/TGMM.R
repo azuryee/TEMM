@@ -1,5 +1,7 @@
-TGMM = function(Xn, K, shape="shared", initial=NULL, iter.max=500, stop=1e-3, trueY=NULL, print=FALSE){
-  #Xn, array type, the tensor data to clust, dimension of last mode is sample size
+#' @export
+
+TGMM = function(Xn, K, shape="shared", initial="kmeans", iter.max=500, stop=1e-3, trueY=NULL, print=FALSE){
+  #Xn, array type, the tensor data for clustering, dimension of last mode is sample size
   #K is number of clusters
   #trueY is the true label
 
@@ -22,7 +24,7 @@ TGMM = function(Xn, K, shape="shared", initial=NULL, iter.max=500, stop=1e-3, tr
     id_init = trueY
   }
   else if(initial=="kmeans"){
-    init_kmeans = kmeans(t(Xm), centers=K, nstart=20)
+    init_kmeans = stats::kmeans(t(Xm), centers=K, nstart=20)
     id_init = init_kmeans$cluster
   }
 

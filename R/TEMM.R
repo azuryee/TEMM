@@ -1,9 +1,7 @@
-source("estGamma_all.R")
-#source("logMixTenGau.R")
-#source("mkronecker.R")
+#' @export
 
-TEMM = function(Xn, u, K, initial=NULL, iter.max=500, stop=1e-3, trueY=NULL, print=FALSE){
-  #Xn, array type, the tensor data to clust, dimension of last mode is sample size
+TEMM = function(Xn, u, K, initial="kmeans", iter.max=500, stop=1e-3, trueY=NULL, print=FALSE){
+  #Xn, array type, the tensor data for clustering, dimension of last mode is sample size
   #u is a vector of envelope dimensions
   #K is number of clusters
   #trueY is the true label
@@ -27,7 +25,7 @@ TEMM = function(Xn, u, K, initial=NULL, iter.max=500, stop=1e-3, trueY=NULL, pri
     id_init = trueY
   }
   else if(initial=="kmeans"){
-    init_kmeans = kmeans(t(Xm), centers=K, nstart=20)
+    init_kmeans = stats::kmeans(t(Xm), centers=K, nstart=20)
     id_init = init_kmeans$cluster
   }
   

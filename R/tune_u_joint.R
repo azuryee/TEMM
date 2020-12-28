@@ -1,5 +1,4 @@
-library(rje)
-source("TEMM_utilities.R")
+#' @export
 
 tune_u_joint = function(u_candi, K, X, iter.max=500, stop=1e-3, trueY=NULL){
   ## u_candi is a list of candidate evelope dimension
@@ -81,6 +80,6 @@ tune_u_joint = function(u_candi, K, X, iter.max=500, stop=1e-3, trueY=NULL){
   # }
   # opt.err = err[ind]
   
-  return(list(opt.u=opt.u, opt.id=opt.id, opt.Mu=opt.Mu))
+  return(list(opt.u=opt.u, opt.id=opt.id, opt.Mu=opt.Mu, bic=opt.bic))
 }
 
