@@ -14,10 +14,10 @@ stop = 1e-3, trueY = NULL, print = FALSE)
   \item{Xn}{The tensor for clustering, should be array tpye, the last dimension is the sample size \code{n}.}
   \item{u}{A vector of envelope dimension}
   \item{K}{Nuber of clusters, greater than or equal to \code{2}.}
-  \item{initial}{Initialization methed for the regularized EM algorithm, default is "kmeans".}
-  \item{iter.max}{Maximum number of iterations, default is \code{500}.}
-  \item{stop}{Convergence threshold of relative change in cluster means, default is \code{1e-3}.}
-  \item{trueY}{A vector of true cluster labels of each observation, default is NULL.}
+  \item{initial}{Initialization methed for the regularized EM algorithm. Default value is "kmeans".}
+  \item{iter.max}{Maximum number of iterations. Default value is \code{500}.}
+  \item{stop}{Convergence threshold of relative change in cluster means. Default value is \code{1e-3}.}
+  \item{trueY}{A vector of true cluster labels of each observation. Default value is NULL.}
   \item{print}{Whether to print information including current iteration number, ralative change in cluster means 
   and clustering error (\code{\%}) in each iteration.}
 }

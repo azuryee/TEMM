@@ -15,11 +15,11 @@ iter.max = 500, stop = 0.001, trueY = NULL)
   \item{u_candi}{A vector of candidate envelope dimension.}
   \item{K}{Nuber of clusters, greater than or equal to \code{2}.}
   \item{X}{The tensor for clustering, should be array tpye, the last dimension is the sample size \code{n}.}
-  \item{C}{Constant in separate BIC creterion, default is \code{1}.}
-  \item{oneD}{Whether to apply 1D-BIC tuning, default is TRUE.}
-  \item{iter.max}{Maximum number of iterations, default is \code{500}.}
-  \item{stop}{Convergence threshold of relative change in cluster means, default is \code{1e-3}.}
-  \item{trueY}{A vector of true cluster labels of each observation, default is NULL.}
+  \item{C}{Constant in separate BIC creterion. Default value is \code{1}.}
+  \item{oneD}{Whether to apply 1D-BIC tuning. Default value is TRUE.}
+  \item{iter.max}{Maximum number of iterations. Default value is \code{500}.}
+  \item{stop}{Convergence threshold of relative change in cluster means. Default value is \code{1e-3}.}
+  \item{trueY}{A vector of true cluster labels of each observation. Default value is NULL.}
 }
 
 \value{

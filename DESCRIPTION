@@ -1,7 +1,7 @@
 Package: TEMM
 Title: Implement tensor envelope EM algorithm for paper "Tensor Envelope Mixture Model For Simultaneous Clustering and Multiway
        Dimension Reduction"
-Version: 0.0.0.9000
+Version: 1.0.0
 Authors@R: 
     c(person(given = "Kai",
            family = "Deng",
