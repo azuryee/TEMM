@@ -1,21 +1,21 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-TEMM
-====
+# TEMM
 
 <!-- badges: start -->
+
 <!-- badges: end -->
 
 This is an R package to implement the Tensor Envelope Mixture Model
-(TEMM) for paper “Tensor Envelope Mixture Model For Simultaneous
+(**TEMM**) for paper “Tensor Envelope Mixture Model For Simultaneous
 Clustering and Multiway Dimension Reduction” by Deng and Zhang.
 
-Installation
-------------
+## Installation
 
 The [TEMM](#temm) package can be installed, directly from
-[GitHub](https://github.com/), using the “devtools” library:
+[GitHub](https://github.com/), using the
+[devtools](https://cran.r-project.org/web/packages/devtools/) library:
 
 ``` r
 install.packages("devtools")
