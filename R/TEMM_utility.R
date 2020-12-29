@@ -1,3 +1,9 @@
+tinner = function(A,B){
+  s = sum(as.vector(A)*as.vector(B))
+  return(s)
+}
+
+
 cluster_err = function(K, idx, id_est) {
   # K is number of clusters
   # id_est is the estimate label
@@ -95,27 +101,24 @@ tensrloglk = function(X, espi, Mu, SIG){
   K = length(Mu)
   
   SIGinv = lapply(SIG, MASS::ginv)
+  Siginv = mkronecker(SIGinv)
   logSIGdet = krondet(SIG,log=TRUE)
   
   B = array(list(),K-1)
   for (k in 2:K) {
-    muk_1 = rTensor::as.tensor(Mu[[k]]-Mu[[1]])
-    muk1 = rTensor::as.tensor(Mu[[k]]+Mu[[1]])
-    B[[k-1]] = rTensor::ttl(muk_1, SIGinv, ms=1:M)
+    B[[k-1]] = tensr::atrans(Mu[[k]]-Mu[[1]], SIGinv)
   }
   
   loglk = 0
   for (i in 1:n){
-    X_mu1 = rTensor::as.tensor(X[[i]]-Mu[[1]])
-    temp_mu1 = rTensor::ttl(X_mu1, SIGinv, ms=1:M)
-    dis_mu1 =  TRES::ttt(X_mu1, temp_mu1, 1:M)@data
+    x_mu1 = matrix(X[[i]]-Mu[[1]],ncol=1)
+    dis_mu1 =  t(x_mu1) %*% Siginv %*% x_mu1
     
     logf1 = -p*log(2*pi)/2 - logSIGdet/2 - dis_mu1/2
     
     for (k in 2:K){
       temp = espi[1]
-      logfkoverf1 = TRES::ttt(B[[k-1]], rTensor::as.tensor(X[[i]]), 1:M)@data -
-        TRES::ttt(B[[k-1]], muk1, 1:M)@data/2
+      logfkoverf1 = tinner(B[[k-1]], X[[i]]-(Mu[[k]]+Mu[[1]])/2)
       fkoverf1 = exp(logfkoverf1)
       temp = temp + espi[k]*fkoverf1
     }
@@ -124,6 +127,9 @@ tensrloglk = function(X, espi, Mu, SIG){
   
   return(loglk)
 }
+
+
+
 
 
 logMixTenGau = function(Xm, pi, eta, Mu, SIG){
